@@ -21,7 +21,7 @@ A professional-grade audio transcription system using OpenAI Whisper with:
 | Documentation | ✅ Complete | README, setup guide, examples, contributing guide |
 | Tests | ✅ Written | Ready to run once dependencies installed |
 | Docker | ✅ Configured | Dockerfile and docker-compose ready |
-| CI/CD | ✅ Set up | GitHub Actions workflow configured |
+| CI/CD | ✅ Simplified | Basic checks only - no heavy dependencies |
 | Installation | ⚠️ Pending | Requires ~5GB disk space for dependencies |
 
 ### Quick Commands
