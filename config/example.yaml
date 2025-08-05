@@ -1,0 +1,45 @@
+# Green Needle Example Configuration
+# Copy this file to green-needle.yaml and modify as needed
+
+# Whisper model settings
+whisper:
+  model: base              # Options: tiny, base, small, medium, large
+  language: null          # null for auto-detect, or specify: en, es, fr, de, etc.
+  device: auto           # auto, cuda, cpu, or mps (for Apple Silicon)
+  download_root: null    # Custom directory for model downloads
+
+# Audio recording settings
+audio:
+  sample_rate: 16000     # Sample rate in Hz (16000 is optimal for Whisper)
+  channels: 1            # 1 for mono, 2 for stereo
+  dtype: float32         # Audio data type
+  device: null          # Audio device index (null for system default)
+
+# Output settings
+output:
+  format: txt            # Default format: txt, json, srt, vtt, tsv, all
+  timestamps: false      # Include timestamps in text output
+  save_segments: true    # Save individual segments
+  output_dir: output     # Default output directory
+
+# Processing settings
+processing:
+  batch_size: 10         # Number of files to keep in memory
+  num_workers: 1         # Parallel processing workers
+  chunk_duration: 3600.0 # Maximum chunk duration in seconds (1 hour)
+  auto_split: true       # Automatically split long audio files
+
+# Advanced settings (uncomment to use)
+# advanced:
+#   temperature: 0.0     # Sampling temperature (0.0 for deterministic)
+#   compression_ratio_threshold: 2.4
+#   logprob_threshold: -1.0
+#   no_speech_threshold: 0.6
+#   condition_on_previous_text: true
+#   initial_prompt: null # Optional prompt to guide transcription
+
+# Logging settings
+# logging:
+#   level: INFO          # DEBUG, INFO, WARNING, ERROR
+#   file: null          # Log file path (null for console only)
+#   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

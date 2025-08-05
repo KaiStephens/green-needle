@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # CPU-based transcription service
+  green-needle:
+    build:
+      context: .
+      target: production
+    image: greenneedle/transcriber:latest
+    container_name: green-needle
+    volumes:
+      - ./input:/app/input
+      - ./output:/app/output
+      - ./recordings:/app/recordings
+      - whisper-models:/app/models
+    environment:
+      - GREEN_NEEDLE_MODEL=${MODEL:-base}
+      - GREEN_NEEDLE_DEVICE=cpu
+    command: ["transcribe", "/app/input/audio.mp3", "--output", "/app/output/transcript.txt"]
+    
+  # GPU-based transcription service (requires NVIDIA Docker)
+  green-needle-gpu:
+    build:
+      context: .
+      target: gpu
+    image: greenneedle/transcriber:gpu
+    container_name: green-needle-gpu
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - GREEN_NEEDLE_MODEL=${MODEL:-base}
+      - GREEN_NEEDLE_DEVICE=cuda
+    volumes:
+      - ./input:/app/input
+      - ./output:/app/output
+      - ./recordings:/app/recordings
+      - whisper-models:/app/models
+    command: ["transcribe", "/app/input/audio.mp3", "--output", "/app/output/transcript.txt"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  
+  # Web service for API access (future feature)
+  green-needle-api:
+    build:
+      context: .
+      target: production
+    image: greenneedle/transcriber:latest
+    container_name: green-needle-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./output:/app/output
+      - whisper-models:/app/models
+    environment:
+      - GREEN_NEEDLE_MODEL=${MODEL:-base}
+      - GREEN_NEEDLE_API=true
+    command: ["serve", "--host", "0.0.0.0", "--port", "8000"]
+    profiles:
+      - api
+
+  # Batch processing service
+  green-needle-batch:
+    build:
+      context: .
+      target: production
+    image: greenneedle/transcriber:latest
+    container_name: green-needle-batch
+    volumes:
+      - ./batch-input:/app/input
+      - ./batch-output:/app/output
+      - whisper-models:/app/models
+    environment:
+      - GREEN_NEEDLE_MODEL=${MODEL:-base}
+      - GREEN_NEEDLE_WORKERS=${WORKERS:-4}
+    command: ["batch", "/app/input", "--output-dir", "/app/output", "--num-workers", "${WORKERS:-4}"]
+    profiles:
+      - batch
+
+volumes:
+  whisper-models:
+    driver: local
