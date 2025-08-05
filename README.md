@@ -254,30 +254,3 @@ git push origin feature/amazing-feature
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- OpenAI for the amazing [Whisper](https://github.com/openai/whisper) model
-- The Python community for excellent audio processing libraries
-- All contributors who have helped improve this project
-
-## 📞 Support
-
-- 📧 Email: support@greenneedle.io
-- 💬 Discord: [Join our community](https://discord.gg/greenneedle)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/green-needle/issues)
-
-## 📈 Roadmap
-
-- [ ] Real-time transcription streaming
-- [ ] Speaker diarization
-- [ ] Cloud storage integration
-- [ ] Web interface
-- [ ] Mobile app support
-- [ ] API service mode
-
----
-
-<div align="center">
-  Made with ❤️ by the Green Needle Team
-</div>
