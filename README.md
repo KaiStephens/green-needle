@@ -1,7 +1,7 @@
 # Green Needle - Audio Transcription System
 
 <div align="center">
-  <img src="docs/images/logo.png" alt="Green Needle Logo" width="200" />
+  <img src="docs/images/logo-small.png" alt="Green Needle Logo" width="200" />
   <h3>High-quality local audio transcription using OpenAI Whisper</h3>
   
   [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
