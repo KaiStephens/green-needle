@@ -36,7 +36,12 @@ logger = logging.getLogger(__name__)
 @click.option("--quiet", "-q", is_flag=True, help="Suppress output")
 @click.pass_context
 def cli(ctx, config, verbose, quiet):
-    """Green Needle - High-quality local audio transcription using OpenAI Whisper."""
+    """Green Needle - High-quality local audio transcription using OpenAI Whisper.
+    
+    \b
+       🌿 Green Needle
+       Audio Transcription System
+    """
     # Set up context
     ctx.ensure_object(dict)
     
